@@ -1,0 +1,18 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static '/bride.css' %}">
+</head>
+<body>
+	<div>
+		{%for i in post%}
+
+			<a href="/bride/{{i.pk}}"><img src="/media/{{i.img}}" style="width: 10%"></a>
+			<hr>
+		{%endfor%}
+	<div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add form</title>
+	<link rel="stylesheet" type="text/css" href="{% static '/forms_css.css' %}">
+</head>
+<body>
+	{% block content %}
+
+	{% if user.is_authenticated %}
+		<H1>HELLO</H1>
+	<form method='post' enctype="multipart/form-data">
+		{%csrf_token%}
+	  <div class="container">
+	    <h1>Register</h1>
+	    <p>Please fill in this form to create an account.</p>
+	    <hr>
+
+	    <label for="head"><b>first</b></label>
+	    <input type="text" placeholder="Enter first" name="head" required>
+
+	    <label for="mid"><b>middle name</b></label>
+	    <input type="text" placeholder="Enter middle" name="mid" required>
+
+	    <label for="la"><b>last name</b></label>
+	    <input type="text" placeholder="last name" name="la" required>
+
+	    <label for="img"><b>upload</b></label>
+	    Select images: <input type="file" name="img">
+
+	    <label for="cats"><b>category</b></label>
+	    <select name="cats">
+	    	{%for i in other%}
+	    	<option value="{{i.id}}">{{i.title}}</option>
+	    	{%endfor%}
+	    </select>
+	    	
+	    <hr>
+	    <button type="submit" class="registerbtn">Register</button>
+	  </div>
+	  
+	  <div class="container signin">
+	    <p>Already have an account? <a href="/login">Sign in</a>.</p>
+	  </div>
+	</form>
+	{%else%}
+		<a href="/login/">login here</a>
+	{%endif%}
+
+	{% endblock %}
+
+</body>
+</html>

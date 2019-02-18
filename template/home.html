@@ -1,0 +1,100 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static '/home_css.css' %}">
+</head>
+<body>
+
+{% if user.is_authenticated %}
+
+<ul>
+  <li><a href="/">Home</a></li>
+    <li><a href="/bride">bride</a></li>
+    <li><a href="/register">register</a></li>
+    <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">category</a>
+    <div class="dropdown-content">
+      {%for i in post%}
+        
+      <a href="/search/{{i.pk}}">{{i.title}}</a>
+      
+      {%endfor%}
+
+    </div>
+    <li style="float:right"><a class="active" href="/dash/{{user.pk}}">Your dashboard {{user.get_username}}</a></li>
+  </li>
+</ul>
+
+
+<div class="header">
+  <center>
+    <h1>my site</h1>
+  </center>
+</div>
+
+
+
+
+
+
+
+
+{%else%}
+
+
+
+
+<div class="non_user_header">
+      
+  <center><h1>SSk Samaj site</h1></center>
+
+</div>
+
+
+<ul>
+    <li><a href="/bride">bride</a></li>
+    <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">category</a>
+    <div class="dropdown-content">
+      {%for i in post%}
+        
+      <a href="/search/{{i.pk}}">{{i.title}}</a>
+      
+      {%endfor%}
+
+    </div>
+  </li>
+</ul>
+
+<div class="page">
+  
+    <center><h1>Our Successfull story</h1></center>
+
+
+</div>
+<footer>
+    <center>
+      <h1>Get Started here <a href="/register">register</a></h1>
+    </center>
+
+    <center>
+      <h1>Or login <a href="/login">here</a></h1>
+      <h1> <a href="/bride">here</a></h1>
+    </center>
+</footer>
+
+{%endif%}
+
+  
+
+
+
+</body>
+</html>
+
+</html>

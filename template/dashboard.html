@@ -1,0 +1,38 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static '/home_css.css' %}">
+</head>
+<body>
+	<ul>
+	  <li><a href="/">Home</a></li>
+	    <li><a href="/bride">bride</a></li>
+	    <li class="dropdown">
+	    <a href="javascript:void(0)" class="dropbtn">category</a>
+	    <div class="dropdown-content">
+	      {%for i in post%}
+	        
+	      <a href="/search/{{i.pk}}">{{i.title}}</a>
+	      
+	      {%endfor%}
+
+	    </div>
+	  </li>
+	</ul>
+
+	{%if dash.username%}
+
+		<h1>Welcome {{dash.username}}</h1>
+	{%endif%}
+
+	<a href="/logout"><h1>logout here</h1></a>
+
+
+	<h1>To upload multiple img <span><a href="/dash/img">click here</a></span></h1>
+</body>
+</html>

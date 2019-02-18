@@ -1,0 +1,101 @@
+{%load static%}
+
+
+<html>
+<title>my website</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none}
+</style>
+<link rel="stylesheet" type="text/css" href="{% static '/bride_detail_css.css' %}">
+<body>
+
+{% if user.is_authenticated %}
+{%if a.last%}
+<div class="w3-container">
+  <h2>Photo Card</h2>
+  
+
+  <div class="w3-card-4" style="width:40%">
+    <div class="w3-content w3-section" style="max-width:800px">
+      {%for i in b%}
+      <img class="mySlides" src="/media/{{i.img}}" style="width:100%">
+      {%endfor%}
+    </div>
+
+
+
+
+    <div class="w3-container w3-center">
+      <h1>{{a.name}}</h1>
+      <table>
+      	<tr>
+      		<td><strong>name</strong></td>
+      		<td><strong>middle</strong></td>
+      		<td><strong>last</strong></td>
+          <td><strong>place</strong></td>
+      	</tr>
+
+      	<tr>
+      		<td>{{a.name}}</td>
+      		<td>{{a.middle}}</td>
+      		<td>{{a.last}}</td>
+          <td>{{a.category}}</td>
+
+      	</tr>
+
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}    
+  x[myIndex-1].style.display = "block";  
+  setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+
+{%endif%}
+{%else%}
+<center>
+<div class="w3-card-4" style="width:40%">
+    <img src="/media/{{a.img}}" style="width:100%">
+    <div class="w3-container w3-center">
+      <h1>{{a.name}}</h1>
+      <table>
+        <tr>
+          <td><strong>name</strong></td>
+          <td><strong>middle</strong></td>
+          <td><strong>last</strong></td>
+          <td><strong>place</strong></td>
+        </tr>
+
+
+      </table>
+    </div>
+  </div>
+</div>
+</center>
+
+
+
+<center><h1 style="background-color: grey">For more detail</h1></center>
+<center><h1 style="background-color: grey">plz register</h1></center>
+{%endif%}
+
+</body>
+</html>
